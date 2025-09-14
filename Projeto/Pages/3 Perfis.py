@@ -27,17 +27,14 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 st.sidebar.image(
-    r"C:\Users\thais\OneDrive\Documentos\Faculdade\2º Ano\Challenge\Projeto\TOTEM_LOGO.png",
+    r"Projeto/TOTEM_LOGO.png",
     width=200
 )
 
 st.title("Perfis dos Clusters")
 
-# =========================
-# Carregar base
-# =========================
 df = pd.read_csv(
-    r"C:\Users\thais\OneDrive\Documentos\Faculdade\2º Ano\Challenge\Projeto\base_clusterizada.csv",
+    r"Projeto/base_clusterizada.csv",
     sep=";"
 )
 
@@ -56,9 +53,6 @@ for col in ["Receita Recorrente Anual (12M)", "Satisfação Média (NPS)", "Temp
 
 df["Receita Recorrente Anual (12M)"] = df["Receita Recorrente Anual (12M)"] / 1_000_000
 
-# =========================
-# Métricas por cluster
-# =========================
 metricas = df.groupby("Cluster").agg({
     "Cliente": "nunique",
     "Receita Recorrente Anual (12M)": "mean",
@@ -66,9 +60,6 @@ metricas = df.groupby("Cluster").agg({
     "Tempo de Relacionamento (dias)": "mean"
 }).reset_index()
 
-# =========================
-# Definição dinâmica de personas
-# =========================
 if metricas.shape[0] == 0:
     st.warning("Nenhum cluster encontrado na base. Verifique a coluna 'cluster' em base_clusterizada.csv")
     st.stop()
@@ -109,9 +100,6 @@ for cid in sorted(todos):
     if int(cid) not in personas:
         personas[int(cid)] = ("🔄 Estável", ["Receita Consistente", "Satisfação Mediana", "Fidelidade média"], "#708090")
 
-# =========================
-# Explicações detalhadas
-# =========================
 explicacoes = {
     "💎 Cliente Ideal": {
         "quem": "Clientes de maior receita, NPS alto e relacionamento longo.",
@@ -140,9 +128,6 @@ explicacoes = {
     }
 }
 
-# =========================
-# Exibição dos cards com explicações
-# =========================
 for _, row in metricas.iterrows():
     cluster_id = int(row["Cluster"])
     nome, desc, cor = personas.get(cluster_id, ("❓ Indefinido", [], "#000000"))
@@ -165,4 +150,5 @@ for _, row in metricas.iterrows():
             <p><b>Importância:</b> {explicacao.get("importancia", "")}</p>
             <p><b>Ação recomendada:</b> {explicacao.get("acao", "")}</p>
         </div>
+
     """, unsafe_allow_html=True)
