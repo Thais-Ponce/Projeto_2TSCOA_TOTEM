@@ -37,7 +37,7 @@ st.markdown(f"""
 
 
 st.image(
-    r"C:\Users\thais\OneDrive\Documentos\Faculdade\2º Ano\Challenge\Projeto\banner.png",
+    r"Projeto/banner.png",
     use_column_width=True
 )
 
@@ -60,4 +60,5 @@ e criarem conexões mais significativas com seus clientes.
 </div>
     """,
     unsafe_allow_html=True
+
 )
