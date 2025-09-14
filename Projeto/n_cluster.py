@@ -8,7 +8,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 
-df = pd.read_csv(r"C:\Users\thais\OneDrive\Documentos\Faculdade\2º Ano\Challenge\Projeto\Base_cliente.csv", sep=";", encoding="utf-8")
+df = pd.read_csv(r"Projeto/Base_cliente.csv", sep=";", encoding="utf-8")
 
 for col in df.columns:
     if df[col].dtype == "object":  # se for string
@@ -87,4 +87,5 @@ perfil = (
 )
 
 print(perfil)
+
 perfil.to_csv("perfil_clusters.csv", index=False)
