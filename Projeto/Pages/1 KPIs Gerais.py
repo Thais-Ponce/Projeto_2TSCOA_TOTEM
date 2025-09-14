@@ -34,13 +34,13 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 
-st.sidebar.image(r"C:\Users\thais\OneDrive\Documentos\Faculdade\2º Ano\Challenge\Projeto\TOTEM_LOGO.png", width=200)
+st.sidebar.image(r"Projeto/TOTEM_LOGO.png", width=200)
 
 st.title("KPIs Clientes")
 
-df_base = pd.read_csv(r"C:\Users\thais\OneDrive\Documentos\Faculdade\2º Ano\Challenge\Projeto\Base_cliente.csv", sep=";")
-df_cluster = pd.read_csv(r"C:\Users\thais\OneDrive\Documentos\Faculdade\2º Ano\Challenge\Projeto\base_clusterizada.csv", sep=";")
-perfil = pd.read_csv(r"C:\Users\thais\OneDrive\Documentos\Faculdade\2º Ano\Challenge\Projeto\perfil_clusters.csv", sep=";")
+df_base = pd.read_csv(r"Projeto/Base_cliente.csv", sep=";")
+df_cluster = pd.read_csv(r"Projeto/base_clusterizada.csv", sep=";")
+perfil = pd.read_csv(r"Projeto/perfil_clusters.csv", sep=";")
 
 for col in ["RECEITA_RECORRENTE", "RESPOSTA_NPS_RELACIONAL"]:
     if col in df_base.columns:
@@ -74,7 +74,7 @@ if "SEGMENTO" in df_base.columns:
 import json
 
 
-geojson_path = r"C:\Users\thais\OneDrive\Documentos\Faculdade\2º Ano\Challenge\Projeto\brazil-states.geojson"
+geojson_path = r"Projeto/brazil-states.geojson"
 
 with open(geojson_path, "r", encoding="utf-8") as f:
     br_states = json.load(f)    
@@ -190,5 +190,6 @@ if "SEGMENTO" in df_base.columns and "RECEITA_RECORRENTE_media" in df_base.colum
     # Exibe valores em cima das barras
     fig_top5.update_traces(texttemplate="%{y:,.2f}", textposition="outside")
     fig_top5.update_layout(showlegend=False)
+
 
     st.plotly_chart(fig_top5, use_container_width=True)
