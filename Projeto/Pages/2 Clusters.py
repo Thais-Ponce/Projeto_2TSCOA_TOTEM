@@ -22,9 +22,9 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
-st.sidebar.image(r"C:\Users\thais\OneDrive\Documentos\Faculdade\2º Ano\Challenge\Projeto\TOTEM_LOGO.png", width=200)
+st.sidebar.image(r"Projeto/TOTEM_LOGO.png", width=200)
 
-df = pd.read_csv(r"C:\Users\thais\OneDrive\Documentos\Faculdade\2º Ano\Challenge\Projeto\base_clusterizada.csv", sep=";")
+df = pd.read_csv(r"Projeto/base_clusterizada.csv", sep=";")
 
 rename_dict = {
     "CD_CLIENTE": "Cliente",
@@ -145,4 +145,5 @@ df_ticket = df.groupby("Cluster").agg({"Receita Recorrente Anual (12M)": "mean"}
 fig_ticket = px.bar(df_ticket, x="Cluster", y="Receita Recorrente Anual (12M)", color="Cluster",
                     text="Receita Recorrente Anual (12M)", title="Ticket Médio Anual por Cluster")
 fig_ticket.update_traces(texttemplate='%{text:.2f}', textposition='outside')
+
 st.plotly_chart(fig_ticket, use_container_width=True)
